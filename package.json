@@ -8,7 +8,6 @@
   },
   "homepage": "https://github.com/joo98e",
   "scripts": {
-    "dev:server": "nodemon",
     "start": "node build/init.js",
     "build": "babel src -d build",
     "docs": "jsdoc -c jsdoc.json && open ./docs/index.html"

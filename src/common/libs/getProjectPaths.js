@@ -2,12 +2,18 @@ import * as path from "path";
 
 /**
  * @typedef {("config"|"root"|"views"|"static"|"upload"|"assets")} PathType
+ */
+
+/**
+ *
  * @param {PathType} type
  */
 function getProjectPaths(type) {
   switch (type) {
     case "static":
-      return path.join(process.env.PWD, "src", "public");
+      return path.join(process.env.PWD, "src", "client", "public");
+    case "assets":
+      return path.join(process.env.PWD, "src", "client", "assets");
     case "views":
       return path.join(process.env.PWD, "src", "client", "views");
     case "upload":
