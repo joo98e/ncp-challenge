@@ -19,7 +19,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "@controllers": path.resolve(__dirname, "src/server/controllers"),
+      "@domain-api": path.resolve(__dirname, "src/server/domain/api"),
+      "@domain": path.resolve(__dirname, "src/server/domain"),
       "@views": path.resolve(__dirname, "src/client/views"),
     },
   },
