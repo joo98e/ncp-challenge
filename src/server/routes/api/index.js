@@ -1,8 +1,8 @@
 import express from "express";
-import TestRoute from "./test";
+import SongRoute from "./song/songRoute";
 
 const ApiRouter = express.Router();
 
-ApiRouter.use("/test", TestRoute);
+ApiRouter.use("/song", SongRoute);
 
 export default ApiRouter;

@@ -8,12 +8,9 @@
   },
   "homepage": "https://github.com/joo98e",
   "scripts": {
-    "start": "node build/init.js",
-    "build": "yarn build:server && yarn build:assets",
-    "build:server": "babel src -d build",
-    "build:assets": "webpack --mode=production",
     "dev:server": "nodemon",
-    "dev:assets": "cross-env webpack --mode=development -w",
+    "start": "node build/init.js",
+    "build": "babel src -d build",
     "docs": "jsdoc -c jsdoc.json && open ./docs/index.html"
   },
   "dependencies": {

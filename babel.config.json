@@ -10,7 +10,8 @@
           "./src"
         ],
         "alias": {
-          "@controllers": "./src/server/controllers",
+          "@domain-api": "./src/server/domain/api",
+          "@domain": "./src/server/domain",
           "@views": "./src/client/views"
         }
       }
