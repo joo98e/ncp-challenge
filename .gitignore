@@ -2,7 +2,7 @@
 .env
 /uploads
 .DS_Store
-/assets
+/src/client/common/assets
 /build
 /docs
 

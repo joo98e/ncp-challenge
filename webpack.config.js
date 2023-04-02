@@ -17,6 +17,12 @@ module.exports = {
     path: path.resolve(__dirname, "assets"),
     clean: true,
   },
+  resolve: {
+    alias: {
+      "@controllers": path.resolve(__dirname, "src/server/controllers"),
+      "@views": path.resolve(__dirname, "src/client/views"),
+    },
+  },
   module: {
     rules: [
       {
