@@ -5,6 +5,7 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import flash from "express-flash";
 import { localsMiddleware } from "../middlewares";
+import layout from "express-ejs-layouts";
 
 export default function getConfiguredApp() {
   const app = express();
@@ -14,11 +15,21 @@ export default function getConfiguredApp() {
   app.set("view engine", "ejs");
   app.set("views", getProjectPaths("views"));
 
+  // layout
+  app.use(layout);
+  app.set("layout", getProjectPaths("layouts") + "/layout");
+
   // http logger
   app.use(logger);
 
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
+
+  // static
+  app.use("/uploads", express.static("uploads"));
+  app.use("/static", express.static(getProjectPaths("static")));
+  app.use("/assets", express.static(getProjectPaths("assets")));
+  app.use("/js", express.static(getProjectPaths("js")));
 
   app.use(
     session({

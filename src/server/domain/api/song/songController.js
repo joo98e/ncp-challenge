@@ -3,8 +3,41 @@ import { songSeedData } from "../../../../common/seedData/seed";
 
 export default class SongController {
   static async findAll(req, res) {
-    const query = await Song.find();
-    return res.json(query);
+    const query = await Song.find().exec();
+
+    const result = query
+      .sort((song) => song.viewCount)
+      .map((item) => ({
+        id: item._id,
+        title: item.title,
+        src: `${process.env.SONG_SOURCE_URL}${item.src}`,
+        thumbnailSrc: `${process.env.THUMBNAIL_SOURCE_URL}${item.thumbnailSrc}`,
+        viewCount: item.viewCount,
+      }));
+
+    return res.json(result);
+  }
+
+  static async updatePlayCount(req, res) {
+    try {
+      const song = await Song.findById(req.params.id);
+      if (!song) return res.status(404).send({ error: "Song is not found." });
+
+      song.viewCount += 1;
+      await song.save();
+
+      return res.send({ message: "Play count updated.", song });
+    } catch (e) {
+      console.log(e);
+      return res.status(500).send({ error: "Server error" });
+    }
+  }
+
+  static async findById(req, res) {
+    try {
+      const song = await Song.findById(req.params.id);
+      return res.send({ success: true, updatedViewCount: song.viewCount });
+    } catch (e) {}
   }
 
   /**
@@ -22,7 +55,6 @@ export default class SongController {
         });
 
         const saveSongs = await song.save();
-        console.log(saveSongs);
         return saveSongs;
       });
 

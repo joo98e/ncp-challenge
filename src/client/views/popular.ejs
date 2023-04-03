@@ -1,0 +1,68 @@
+<%- contentFor('body') %>
+<div class="container ">
+
+    <ul id="list-container" class="list-group">
+
+    </ul>
+    <div class="row row-gap-5 song-container">
+        <% for(const chart of chartData){ %>
+            <div class="col">
+                <div class="card" style="width: 16rem;">
+                    <img src="<%= chart.thumbnailSrc %>" class="card-img-top" alt="<%= chart.title %>">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= chart.title %></h5>
+                        <p class="card-text view-count" data-song-id="<%= chart.id %>">
+                            <%= chart.viewCount %>
+                        </p>
+                        <button class="btn btn-primary flex justify-content-center"
+                                onClick="handleClickPlay('<%= chart.id %>', '<%= chart.src %>')">Play!
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+    <audio id="ncp-song-audio" src=""></audio>
+</div>
+
+
+<script>
+
+    renderList();
+
+    async function renderList() {
+        const listsContainer = document.getElementById("list-container")
+        const lists = await (await fetch("/api/songs", {method: "GET"})).json();
+
+        listsContainer.innerHTML = "";
+
+        lists.sort((a, b) => b.viewCount - a.viewCount).forEach(function (list, index) {
+            const createElementList = document.createElement("li");
+            createElementList.className = index === 0 ? "list-group-item active" : "list-group-item";
+            createElementList.innerText = `${index + 1}위 : ${list.title} / ${list.viewCount}`
+            listsContainer.appendChild(createElementList)
+        });
+    }
+
+    async function handleClickPlay(id, src) {
+        if (typeof src !== "string") return false;
+
+        const audio = document.getElementById("ncp-song-audio");
+        audio.src = src;
+        audio.play();
+
+        const {song} = await updatePlayCount(id);
+        updateViewCountUI(id, song.viewCount)
+
+    }
+
+    function updateViewCountUI(id, viewCount) {
+        const nextViewCountParagraph = document.querySelector(`.view-count[data-song-id='${id}']`);
+        nextViewCountParagraph.innerText = viewCount;
+
+        renderList();
+    }
+
+</script>
