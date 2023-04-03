@@ -1,5 +1,5 @@
 import rootRouter from "./routes/rootRouter";
-import getConfiguredApp from "./config/getApp";
+import getConfiguredApp from "./config/getConfiguredApp";
 
 const app = getConfiguredApp();
 
