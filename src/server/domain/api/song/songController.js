@@ -1,5 +1,5 @@
 import Song from "@domain-api/song/song.model";
-import { songSeedData } from "../../../../common/seedData/seed";
+import { songSeedData } from "../../../../common/seedData/seedData.js";
 
 export default class SongController {
   static async findAll(req, res) {
@@ -49,13 +49,16 @@ export default class SongController {
       songSeedData.map(async (seed) => {
         const song = new Song({
           title: seed.title,
+          artist: seed.artist,
           src: seed.src,
           thumbnailSrc: seed.thumbnailSrc,
+          tags: seed.tags,
+          totalTime: seed.totalTime,
+          likeCount: 0,
           viewCount: 0,
         });
 
-        const saveSongs = await song.save();
-        return saveSongs;
+        return await song.save();
       });
 
       return res.json({ ok: true });
