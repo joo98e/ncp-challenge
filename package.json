@@ -11,7 +11,9 @@
     "start": "node build/init.js",
     "dev:server": "nodemon",
     "build": "babel src -d build",
-    "docs": "jsdoc -c jsdoc.json && open ./docs/index.html"
+    "docs": "jsdoc -c jsdoc.json && open ./docs/index.html",
+    "db:start": "brew services start mongodb-community@4.2",
+    "db:close": "brew services stop mongodb-community@4.2"
   },
   "dependencies": {
     "@ffmpeg/core": "^0.8.5",

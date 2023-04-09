@@ -41,4 +41,9 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    contentBase: path.resolve(__dirname, "src"),
+    compress: true,
+    port: 3000,
+  },
 };

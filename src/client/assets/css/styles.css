@@ -17,8 +17,6 @@ body {
 }
 
 #app-body {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 8fr;
 }
 
 #app-navbar {
