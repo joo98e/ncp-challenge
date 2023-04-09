@@ -1,13 +1,24 @@
 <!DOCTYPE html>
-<html lang="ko" data-bs-theme="dark">
+<html lang="KO" data-bs-theme="dark">
+
 <%- include("./header.ejs") %>
+
 <body>
+
 <header id="app-header">
 
 </header>
-<main id="app-body">
-    <%- body %>
-</main>
+
+<div id="app-body" class="bg-body-tertiary shadow-lg rounded d-grid row-gap-0 "
+     style="grid-template-rows: 1fr 8fr 1fr">
+    <%- include("./searchbar.ejs") %>
+    <main>
+        <%- body %>
+    </main>
+    <%- include("./footerButtonGroup.ejs") %>
+</div>
+
 <%- include("./scripts.ejs") %>
+
 </body>
 </html>

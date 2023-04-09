@@ -19,9 +19,8 @@ async function renderList() {
 async function handleClickPlay(id, src) {
   if (typeof src !== "string") return false;
 
-  const audio = document.getElementById("ncp-song-audio");
-  audio.src = src;
-  audio.play();
+  ncp_audio.src = src;
+  ncp_audio.play();
 
   const { song } = await updatePlayCount(id);
   updateViewCountUI(id, song.viewCount);
@@ -31,5 +30,5 @@ function updateViewCountUI(id, viewCount) {
   const nextViewCountParagraph = document.querySelector(`.view-count[data-song-id='${id}']`);
   nextViewCountParagraph.innerText = viewCount;
 
-  renderList();
+  void renderList();
 }

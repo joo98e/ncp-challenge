@@ -2,7 +2,9 @@ import getAxios from "../../libs/axios";
 
 export default class ViewController {
   static async home(req, res) {
-    return res.render("home", { pageTitle: "No Capitulate Player" });
+    const axios = getAxios();
+    const { data } = await axios.get("/songs");
+    return res.render("home", { pageTitle: "Nomad Coder Player", songs: data });
   }
 
   static async popular(req, res) {
