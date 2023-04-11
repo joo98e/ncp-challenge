@@ -1,7 +1,7 @@
 import * as path from "path";
 
 /**
- * @typedef {("config"|"root"|"views"|"static"|"upload"|"assets"|"layouts"|"js")} PathType
+ * @typedef {("config"|"root"|"views"|"static"|"upload"|"bootstrap-icons"|"assets"|"layouts"|"js")} PathType
  */
 
 /**
@@ -14,6 +14,8 @@ function getProjectPaths(type) {
       return path.join(process.env.PWD, "src", "client", "public");
     case "assets":
       return path.join(process.env.PWD, "src", "client", "assets");
+    case "bootstrap-icons":
+      return path.join(process.env.PWD, "node_modules", "bootstrap-icons", "font");
     case "views":
       return path.join(process.env.PWD, "src", "client", "views");
     case "layouts":

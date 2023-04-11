@@ -1,6 +1,3 @@
-<div>
-    <% for(const song of songs){ %>
-        <% include("./components/organisms/Card.ejs", { song: song }) %>
-    <% } %>
-</div>
-
+<%- include("./components/templates/Playlist.ejs") %>
+<%- include("./components/templates/Player.ejs") %>
+<%- include("./components/templates/PopularChart.ejs", { songs: songs }) %>

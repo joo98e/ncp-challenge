@@ -99,6 +99,8 @@ body {
     justify-self: flex-end;
     position: relative;
     z-index: 2;
+    display: flex;
+    justify-content: space-between;
 }
 
 @keyframes drift {
@@ -113,6 +115,11 @@ body {
 #app-navbar {
 }
 
+#app-body .main-tab {
+    display: none;
+    padding: 1rem;
+    box-sizing: border-box;
+}
 
 @media screen and (max-width: 768px) {
     #app-body {

@@ -1,1 +1,5 @@
-const ncp_audio = document.getElementById("ncp-song-audio");
+/* global $ */
+
+// global UI Selector
+window.addEventListener("load", function () {
+});
