@@ -2,3 +2,14 @@
     padding: 1rem;
     box-sizing: border-box;
 }
+
+#player .song-container {
+}
+
+#player #song-container img {
+    width: 100%;
+    border: 4px solid #ffb374;
+    border-radius: 50%;
+    object-fit: contain;
+    clip-path: circle(50% at 50% 50%);
+}

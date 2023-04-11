@@ -1,5 +1,5 @@
 <div class="col">
-    <div class="card" style="width: 16rem;">
+    <div class="card" style="width: 16rem;" onclick="handleClickPlay('<%= JSON.stringify(song) %>')">
         <img src="<%= song.thumbnailSrc %>" class="card-img-top" alt="<%= song.title %>">
         <div class="card-body">
             <h5 class="card-title"><%= song.title %></h5>
