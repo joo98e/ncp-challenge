@@ -23,17 +23,103 @@ body {
 }
 
 #app-body {
-    width: 768px;
+    position: relative;
+    z-index: 1;
+    width: 500px;
     height: 90vh;
     margin: 0 auto;
     padding: 1rem;
     box-sizing: border-box;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(133, 80, 80, 1) 47%, rgba(77, 0, 0, 1) 89%);
+    overflow: hidden;
+}
+
+#app-body .wave {
+    opacity: .1;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    margin-top: -250px;
+    margin-left: -400px;
+    transform-origin: 50% 50%;
+    border-radius: 43%;
+    animation: drift 3000ms infinite linear;
+    background: rgb(99, 43, 43);
+}
+
+#app-body .wave.-three {
+    animation: drift 6000ms infinite linear;
+}
+
+#app-body .wave.-three.stop {
+    animation-play-state: paused;
+}
+
+#app-body .wave.-two {
+    animation: drift 4000ms infinite linear;
+    opacity: .1;
+    background: yellow;
+}
+
+#app-body .wave.-two.stop {
+    animation-play-state: paused;
+}
+
+
+#app-body main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+}
+
+#app-body main .searchbar {
+    position: relative;
+    z-index: 2;
+    justify-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#app-body main section {
+    justify-self: center;
+    flex-grow: 1;
+    position: relative;
+    z-index: 2;
+    height: 100%;
     overflow-y: auto;
+}
+
+#app-body main #footer-button-group {
+    justify-self: flex-end;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+}
+
+@keyframes drift {
+    from {
+        transform: rotate(0deg);
+    }
+    from {
+        transform: rotate(360deg);
+    }
 }
 
 #app-navbar {
 }
 
+#app-body .main-tab {
+    display: none;
+    padding: 1rem;
+    box-sizing: border-box;
+}
 
 @media screen and (max-width: 768px) {
     #app-body {

@@ -1,0 +1,17 @@
+#ncp-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+}
+
+#ncp-logo {
+    width: 36px;
+    height: 36px;
+
+
+    color: rgb(246, 138, 29);
+    fill: rgb(246, 138, 29);
+    stroke: rgb(246, 138, 29)
+}

@@ -9,14 +9,25 @@
 
 </header>
 
-<div id="app-body" class="bg-body-tertiary shadow-lg rounded d-grid row-gap-0 "
-     style="grid-template-rows: 1fr 8fr 1fr">
-    <%- include("./searchbar.ejs") %>
+<div id="app-body" class="bg-body-tertiary shadow-lg rounded">
+
+    <div class='wave -one'></div>
+    <div class='wave -two'></div>
+    <div class='wave -three'></div>
+
+
     <main>
-        <%- body %>
+        <%- include("./searchbar.ejs") %>
+
+        <section>
+            <%- body %>
+        </section>
+
+        <%- include("./footerButtonGroup.ejs") %>
     </main>
-    <%- include("./footerButtonGroup.ejs") %>
+
 </div>
+
 
 <%- include("./scripts.ejs") %>
 

@@ -1,4 +1,8 @@
-void renderList();
+/* global $ */
+
+$(document).ready(function () {
+  void renderList();
+});
 
 async function renderList() {
   const listsContainer = document.getElementById("list-container");
@@ -8,6 +12,7 @@ async function renderList() {
 
   lists
     .sort((a, b) => b.viewCount - a.viewCount)
+    .slice(0, 10)
     .forEach(function (list, index) {
       const createElementList = document.createElement("li");
       createElementList.className = index === 0 ? "list-group-item active" : "list-group-item";
@@ -16,19 +21,33 @@ async function renderList() {
     });
 }
 
-async function handleClickPlay(id, src) {
-  if (typeof src !== "string") return false;
+/**
+ * @param song {string}
+ * @returns {Promise<boolean>}
+ */
+async function handleClickPlay(song) {
+  if (typeof song !== "string") return false;
+  const parsedSong = JSON.parse(song);
 
-  ncp_audio.src = src;
-  ncp_audio.play();
+  const audio = "#ncp-song-audio";
+  $(audio)[0].setAttribute("src", parsedSong.src);
+  $(audio)[0].play();
 
-  const { song } = await updatePlayCount(id);
-  updateViewCountUI(id, song.viewCount);
+  const { song: updatedSong } = await updatePlayCount(parsedSong.id);
+  updateViewCountUI(parsedSong.id, updatedSong.viewCount);
+  setCurrentSong(parsedSong);
+  updateCurrentSongUI({
+    ...parsedSong,
+    viewCount: updatedSong.viewCount,
+  });
 }
 
 function updateViewCountUI(id, viewCount) {
   const nextViewCountParagraph = document.querySelector(`.view-count[data-song-id='${id}']`);
-  nextViewCountParagraph.innerText = viewCount;
+
+  if (nextViewCountParagraph !== null) {
+    nextViewCountParagraph.innerHTML = viewCount;
+  }
 
   void renderList();
 }

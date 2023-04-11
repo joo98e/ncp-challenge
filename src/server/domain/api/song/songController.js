@@ -10,9 +10,15 @@ export default class SongController {
       .map((item) => ({
         id: item._id,
         title: item.title,
+        artist: item.artist,
         src: `${process.env.SONG_SOURCE_URL}${item.src}`,
         thumbnailSrc: `${process.env.THUMBNAIL_SOURCE_URL}${item.thumbnailSrc}`,
+        tags: item.tags,
+        totalTime: item.totalTime,
+        likeCount: item.likeCount,
         viewCount: item.viewCount,
+        createdAt: item.createdAt,
+        updatedAt: item.updatedAt,
       }));
 
     return res.json(result);

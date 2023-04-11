@@ -29,6 +29,7 @@ export default function getConfiguredApp() {
   app.use("/uploads", express.static("uploads"));
   app.use("/static", express.static(getProjectPaths("static")));
   app.use("/assets", express.static(getProjectPaths("assets")));
+  app.use("/bootstrap-icons/", express.static(getProjectPaths("bootstrap-icons")));
   app.use("/js", express.static(getProjectPaths("js")));
 
   app.use(
