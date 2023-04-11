@@ -1,0 +1,14 @@
+<div class="col">
+    <div class="card" style="width: 16rem;">
+        <img src="<%= song.thumbnailSrc %>" class="card-img-top" alt="<%= song.title %>">
+        <div class="card-body">
+            <h5 class="card-title"><%= song.title %></h5>
+            <p class="card-text view-count" data-song-id="<%= song.id %>">
+                <%= song.viewCount %>
+            </p>
+            <button class="btn btn-primary flex justify-content-center"
+                    onClick="handleClickPlay('<%= song.id %>', '<%= song.src %>')">Play!
+            </button>
+        </div>
+    </div>
+</div>
