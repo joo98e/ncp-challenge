@@ -1,5 +1,8 @@
 import axios from "axios";
 
+/**
+ * @return {AxiosInstance}
+ */
 function getAxios() {
   const axiosInstance = axios.create({
     baseURL: "/api/",

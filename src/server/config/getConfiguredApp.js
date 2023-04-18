@@ -6,6 +6,7 @@ import MongoStore from "connect-mongo";
 import flash from "express-flash";
 import { localsMiddleware } from "../middlewares";
 import layout from "express-ejs-layouts";
+import getConfiguredPassport from "./getConfiguredPassport";
 
 export default function getConfiguredApp() {
   const app = express();
@@ -43,6 +44,11 @@ export default function getConfiguredApp() {
 
   app.use(flash());
   app.use(localsMiddleware);
+
+  const passport = getConfiguredPassport();
+
+  app.use(passport.initialize());
+  app.use(passport.session({}));
 
   return app;
 }

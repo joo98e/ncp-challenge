@@ -1,0 +1,21 @@
+<%- contentFor('body') %>
+<link rel="stylesheet" href="/assets/css/views/join.css" crossorigin="anonymous">
+<div id="join-container">
+    <ul>
+        <li><label><span>username</span><input type="text" name="username"></label></li>
+        <li><label><span>email</span><input type="email" name="email"></label></li>
+        <li><label><span>password</span><input type="password" name="password"></label></li>
+        <li><label><span>first name</span><input type="text" name="firstName"></label></li>
+        <li><label><span>last name</span><input type="text" name="lastName"></label></li>
+    </ul>
+    <button type="button" class="btn btn-info" onclick="handleRequestJoinUser()">Info</button>
+</div>
+
+<script>
+    window.addEventListener("load", function () {
+        linkScript("../js/views/join.js");
+    });
+
+</script>
+
+<script src="../js/views/join.js"></script>

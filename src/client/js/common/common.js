@@ -41,3 +41,14 @@ function updateCurrentSongUI(song) {
   $("#song-container .song-viewCount .count").text(song.viewCount);
   $("#song-container .song-likeCount .count").text(song.likeCount);
 }
+
+/**
+ * @param scriptUrl {string}
+ * @return {void}
+ */
+function linkScript(scriptUrl) {
+  const scriptElement = document.createElement("script");
+  scriptElement.src = scriptUrl;
+  const target = window.document.querySelector("body");
+  target.appendChild(scriptElement);
+}

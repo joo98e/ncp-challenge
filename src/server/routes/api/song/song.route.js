@@ -1,4 +1,4 @@
-import SongController from "@domain-api/song/songController";
+import SongController from "@domain-api/song/song.controller";
 
 const express = require("express");
 const SongRoute = express.Router();

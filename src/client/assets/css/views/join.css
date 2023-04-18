@@ -1,0 +1,13 @@
+#join-container {
+
+}
+
+#join-container ul > li > label {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 1rem;
+}
+
+#join-container button {
+    width: 100%;
+}

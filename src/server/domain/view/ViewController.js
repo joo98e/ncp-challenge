@@ -7,6 +7,14 @@ export default class ViewController {
     return res.render("home", { pageTitle: "Nomad Coder Player", songs: data });
   }
 
+  static login(req, res) {
+    return res.render("login", { pageTitle: "로그인" });
+  }
+
+  static join(req, res) {
+    return res.render("join", { pageTitle: "회원가입" });
+  }
+
   static async popular(req, res) {
     const axios = getAxios();
     const { data } = await axios.get("/songs");
