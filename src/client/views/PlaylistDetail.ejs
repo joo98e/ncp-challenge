@@ -1,0 +1,25 @@
+<%- contentFor('body') %>
+<link rel="stylesheet" href="/assets/css/views/playlistDetail.css" crossorigin="anonymous">
+
+<div id="playlist-detail-container" class="mt-2">
+
+    <h4>현재 리스트</h4>
+    <ul class="playlist-detail-current">
+
+    </ul>
+
+    <hr class="hr"/>
+
+    <h4>또 다른 Song 추가하기</h4>
+    <ul class="playlist-detail-songs">
+
+    </ul>
+</div>
+
+
+<script>
+    window.addEventListener("load", function () {
+        void renderSongs("<%= detailPlaylist.songs %>");
+        void updatePlaylistSongs();
+    });
+</script>

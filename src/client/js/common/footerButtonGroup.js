@@ -6,7 +6,7 @@ function hideAllTab() {
 
 function handleClickViewPlayList() {
   hideAllTab();
-  $(".main-tab-1").show();
+  window.location.href = "/playlist";
 }
 
 function handleClickViewPlayer() {

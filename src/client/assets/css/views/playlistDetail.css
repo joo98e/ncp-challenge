@@ -1,0 +1,15 @@
+#playlist-detail-container ul {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#playlist-detail-container .list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#playlist-detail-container .list button {
+}

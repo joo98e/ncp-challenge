@@ -18,7 +18,7 @@ export default class UserController {
 
   static async failure(req, res, next) {
     passport.authenticate("local", function (err, success, errorMsg) {
-      return res.status(401).send({ ok: false, errorMsg: "로그인이 실패했습니다." });
+      return res.status(401).send({ ok: false, message: "로그인이 실패했습니다." });
     })(req, res, next);
   }
 
@@ -39,7 +39,7 @@ export default class UserController {
         $and: [{ email: email }],
       });
 
-      if (existUser) return res.status(500).send({ ok: false, errorMsg: "already exists user email." });
+      if (existUser) return res.status(500).send({ ok: false, message: "already exists user email." });
 
       const hashedPassword = await bcrypt.hash(password, UserController.SALT_ROUNDS);
       const newUser = new User({
@@ -55,7 +55,7 @@ export default class UserController {
       return res.send({ ok: true, user: document });
     } catch (e) {
       console.log(e);
-      return res.send({ ok: false, errorMsg: "unknown error", e: e });
+      return res.send({ ok: false, message: "unknown error", e: e });
     }
   }
 }
