@@ -52,3 +52,30 @@ function linkScript(scriptUrl) {
   const target = window.document.querySelector("body");
   target.appendChild(scriptElement);
 }
+
+/**
+ * @typedef {("main"|"login"|"join")} RouteType
+ */
+
+/**
+ * @param href {RouteType}
+ */
+function pushRoute(href) {
+  let destination = "";
+  switch (href) {
+    case "login":
+      destination = "/login";
+      break;
+    case "join":
+      destination = "/join";
+      break;
+
+    case "main":
+      destination = "/";
+      break;
+    default:
+      destination = "/";
+      break;
+  }
+  return (window.location.href = destination);
+}

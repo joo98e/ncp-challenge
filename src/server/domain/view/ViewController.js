@@ -2,12 +2,24 @@ import getAxios from "../../libs/axios";
 
 export default class ViewController {
   static async home(req, res) {
+    if (!req.user) return res.render("login", { pageTitle: "로그인" });
+
     const axios = getAxios();
     const { data } = await axios.get("/songs");
-    return res.render("home", { pageTitle: "Nomad Coder Player", songs: data });
+    const { email, firstName, lastName } = req.user;
+
+    return res.render("home", {
+      pageTitle: "Nomad Coder Player",
+      songs: data,
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+    });
   }
 
   static login(req, res) {
+    if (req.user) return res.redirect("/");
+
     return res.render("login", { pageTitle: "로그인" });
   }
 

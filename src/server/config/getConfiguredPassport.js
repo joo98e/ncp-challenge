@@ -10,37 +10,43 @@ function getConfiguredPassport() {
   passport.use(
     new LocalStrategy(
       {
-        usernameField: "username",
+        usernameField: "email",
         passwordField: "password",
       },
-      async (username, password, done) => {
+      async (email, password, done) => {
         try {
-          const user = await User.findOne({ username: username });
+          const user = await User.findOne({ email: email });
+
           if (!user) {
             return done(null, false, { message: "존재하지 않는 사용자입니다." });
           }
-          const result = await user.checkPassword(password);
 
-          if (result) {
-            return done(null, user);
+          const result = await user.validPassword(password);
+
+          if (!result) {
+            return done(null, false, { message: "비밀번호가 일치하지 않습니다." });
           }
 
-          return done(null, false, { message: "비밀번호가 일치하지 않습니다." });
+          return done(null, user, { ok: true, user });
         } catch (error) {
-          console.error(error);
-          return done(error);
+          return done(error, false, { message: "unknown error" });
         }
       }
     )
   );
 
   passport.serializeUser((user, done) => {
+    console.log("로그인 성공 시 유저 정보 세션에 저장하는 기능");
     done(null, user._id);
   });
 
-  passport.deserializeUser(async (id, done) => {
+  passport.deserializeUser(async (_id, done) => {
+    console.log("로그인 성공한 유저에게 실행되는 함수");
+
+    console.log(1);
     try {
-      const user = await User.findById(id);
+      console.log(2);
+      const user = await User.findById(_id);
       done(null, user);
     } catch (error) {
       done(error);

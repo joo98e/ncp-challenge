@@ -1,8 +1,35 @@
 import User from "@domain-api/user/user.model";
 import bcrypt from "bcrypt";
+import passport from "passport";
 
 export default class UserController {
   static SALT_ROUNDS = 12;
+
+  static async login(req, res, next) {
+    passport.authenticate("local", {
+      successRedirect: "/api/user/login/success",
+      failureRedirect: "/api/user/login/failure",
+    })(req, res, next);
+  }
+
+  static async success(req, res) {
+    return res.status(200).send({ ok: true });
+  }
+
+  static async failure(req, res, next) {
+    passport.authenticate("local", function (err, success, errorMsg) {
+      return res.status(401).send({ ok: false, errorMsg: "로그인이 실패했습니다." });
+    })(req, res, next);
+  }
+
+  static async logout(req, res) {
+    req.logout();
+    req.session.save((err) => {
+      res.redirect("/");
+    });
+    req.session.destroy();
+    return res.redirect("/login");
+  }
 
   // TODO API COMMON RESPONSE TYPE ALIAS
   static async join(req, res) {

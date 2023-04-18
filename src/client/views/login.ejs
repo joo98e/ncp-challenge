@@ -1,10 +1,21 @@
 <%- contentFor('body') %>
+<link rel="stylesheet" href="/assets/css/views/login.css" crossorigin="anonymous">
+<div id="login-container">
+    <label>
+        <span>email</span>
+        <input type="email" name="login_email"/>
+    </label>
+    <label>
+        <span>password</span>
+        <input type="password" name="login_password"/>
+    </label>
 
-<input type="email"/>
-<input type="password"/>
-<a href="/join">회원가입</a>
+    <div class="button-wrapper">
+        <button type="button" class="btn btn-info" onclick="handleClickRequestLogin()">Sign In</button>
+        <button type="button" class="btn btn-info" onclick="pushRoute('join')">Sign Up</button>
+    </div>
+
+
+</div>
 
 <script src="../js/views/login.js"></script>
-<script>
-    test();
-</script>

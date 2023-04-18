@@ -1,7 +1,7 @@
 let requestLoading = false;
 
 async function handleRequestJoinUser() {
-  if (requestLoading) return console.log(123);
+  if (requestLoading) return;
   // TODO validation
 
   try {
@@ -21,9 +21,18 @@ async function handleRequestJoinUser() {
       lastName: lastNameInput.value,
     };
 
-    if (!usernameInput.value) return alert(`please Enter Your username.`);
-    if (!emailInput.value) return alert(`please Enter Your email.`);
-    if (!passwordInput.value) return alert(`please Enter Your password.`);
+    if (!usernameInput.value) {
+      requestLoading = false;
+      return alert(`please Enter Your username.`);
+    }
+    if (!emailInput.value) {
+      requestLoading = false;
+      return alert(`please Enter Your email.`);
+    }
+    if (!passwordInput.value) {
+      requestLoading = false;
+      return alert(`please Enter Your password.`);
+    }
 
     const result = await (
       await fetch("/api/user/join", {
