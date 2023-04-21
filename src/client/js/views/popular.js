@@ -8,17 +8,18 @@ async function renderList() {
   const listsContainer = document.getElementById("list-container");
   const lists = await (await fetch("/api/songs", { method: "GET" })).json();
 
-  listsContainer.innerHTML = "";
-
-  lists
-    .sort((a, b) => b.viewCount - a.viewCount)
-    .slice(0, 10)
-    .forEach(function (list, index) {
-      const createElementList = document.createElement("li");
-      createElementList.className = index === 0 ? "list-group-item active" : "list-group-item";
-      createElementList.innerText = `${index + 1}위 : ${list.title} / ${list.viewCount}`;
-      listsContainer.appendChild(createElementList);
-    });
+  try {
+    listsContainer.innerHTML = "";
+    lists
+      .sort((a, b) => b.viewCount - a.viewCount)
+      .slice(0, 10)
+      .forEach(function (list, index) {
+        const createElementList = document.createElement("li");
+        createElementList.className = index === 0 ? "list-group-item active" : "list-group-item";
+        createElementList.innerText = `${index + 1}위 : ${list.title} / ${list.viewCount}`;
+        listsContainer.appendChild(createElementList);
+      });
+  } catch (e) {}
 }
 
 /**
@@ -43,11 +44,13 @@ async function handleClickPlay(song) {
 }
 
 function updateViewCountUI(id, viewCount) {
-  const nextViewCountParagraph = document.querySelector(`.view-count[data-song-id='${id}']`);
+  try {
+    const nextViewCountParagraph = document.querySelector(`.view-count[data-song-id='${id}']`);
 
-  if (nextViewCountParagraph !== null) {
-    nextViewCountParagraph.innerHTML = viewCount;
-  }
+    if (nextViewCountParagraph !== null) {
+      nextViewCountParagraph.innerHTML = viewCount;
+    }
 
-  void renderList();
+    void renderList();
+  } catch (e) {}
 }

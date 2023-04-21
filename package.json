@@ -8,8 +8,8 @@
   },
   "homepage": "https://github.com/joo98e",
   "scripts": {
-    "start": "node build/init.js",
-    "build": "babel src -d build",
+    "start": "node build/server/init.js",
+    "build": "rm -rf ./build && babel src -d build",
     "dev:start": "nodemon",
     "docs": "jsdoc -c jsdoc.json && open ./docs/index.html",
     "db:start": "brew services start mongodb-community@4.2",

@@ -1,22 +1,15 @@
 /* global $ */
 
-function hideAllTab() {
-  $(".main-tab").hide();
-}
-
 function handleClickViewPlayList() {
-  hideAllTab();
   window.location.href = "/playlist";
 }
 
 function handleClickViewPlayer() {
-  hideAllTab();
-  $(".main-tab-2").show();
+  window.location.href = "/";
 }
 
 function handleClickViewPopularList() {
-  hideAllTab();
-  $(".main-tab-3").show();
+  window.location.href = "/popular";
 }
 
 $(document).ready(function () {
