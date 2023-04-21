@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+console.log("Ayaan", process.env.DB_URL);
 void mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
